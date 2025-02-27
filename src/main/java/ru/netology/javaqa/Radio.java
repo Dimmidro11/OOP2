@@ -1,8 +1,26 @@
 package ru.netology.javaqa;
 
 public class Radio {
-    int currentVolume;
-    int currentStation;
+    private int currentVolume;
+    private int currentStation;
+
+    public int getCurrentStation() {
+        return currentStation;
+    }
+
+    public int getCurrentVolume() {
+        return currentVolume;
+    }
+
+    public void setCurrentVolume(int newCurrentVolume) {
+        if (newCurrentVolume < 0) {
+            return;
+        }
+        if (newCurrentVolume > 100) {
+            return;
+        }
+        currentVolume = newCurrentVolume;
+    }
 
     public void increaseStation() {
         if (currentStation < 9) {

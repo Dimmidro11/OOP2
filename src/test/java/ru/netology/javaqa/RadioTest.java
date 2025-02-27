@@ -18,7 +18,7 @@ public class RadioTest {
         radio.setCurrentStation(set);
         radio.increaseStation();
 
-        int actual = radio.currentStation;
+        int actual = radio.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -35,7 +35,7 @@ public class RadioTest {
         radio.setCurrentStation(set);
         radio.reduceStation();
 
-        int actual = radio.currentStation;
+        int actual = radio.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -50,7 +50,7 @@ public class RadioTest {
 
         radio.setCurrentStation(set);
 
-        int actual = radio.currentStation;
+        int actual = radio.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -63,10 +63,10 @@ public class RadioTest {
     public void shouldIncreaseVolume(int expected, int set) {
         Radio radio = new Radio();
 
-        radio.currentVolume = set;
+        radio.setCurrentVolume(set);
         radio.increaseVolume();
 
-        int actual = radio.currentVolume;
+        int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -79,10 +79,25 @@ public class RadioTest {
     public void shouldReduceVolume(int expected, int set) {
         Radio radio = new Radio();
 
-        radio.currentVolume = set;
+        radio.setCurrentVolume(set);
         radio.reduceVolume();
 
-        int actual = radio.currentVolume;
+        int actual = radio.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "0, -1",
+            "0, 101"
+    })
+    public void shouldNotSetVolume(int expected, int set) {
+        Radio radio = new Radio();
+
+        radio.setCurrentVolume(set);
+
+        int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }

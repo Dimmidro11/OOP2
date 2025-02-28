@@ -101,4 +101,51 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
+    @ParameterizedTest
+    @CsvSource({
+            "0, 29, 30",
+            "16, 15, 30"
+    })
+    public void shouldIncreaseStationAmount30(int expected, int set, int amount) {
+        Radio radio = new Radio(amount);
+
+        radio.setCurrentStation(set);
+        radio.increaseStation();
+
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "29, 0, 30",
+            "14, 15, 30"
+    })
+    public void shouldReduceStationAmount30(int expected, int set, int amount) {
+        Radio radio = new Radio(amount);
+
+        radio.setCurrentStation(set);
+        radio.reduceStation();
+
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "0, 30, 30",
+            "0, -1, 30",
+    })
+    public void setStationBorderTestAmount30(int expected, int set, int amount) {
+        Radio radio = new Radio(amount);
+
+        radio.setCurrentStation(set);
+
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
 }

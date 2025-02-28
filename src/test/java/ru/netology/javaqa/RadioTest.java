@@ -104,11 +104,11 @@ public class RadioTest {
 
     @ParameterizedTest
     @CsvSource({
-            "0, 29, 30",
-            "16, 15, 30"
+            "0, 29, 0, 0, 30",
+            "16, 15, 0, 0, 30"
     })
-    public void shouldIncreaseStationAmount30(int expected, int set, int amount) {
-        Radio radio = new Radio(amount);
+    public void shouldIncreaseStationAmount30(int expected, int set, int currentVolume, int currentStation, int amount) {
+        Radio radio = new Radio(currentVolume, currentStation, amount);
 
         radio.setCurrentStation(set);
         radio.increaseStation();
@@ -120,11 +120,11 @@ public class RadioTest {
 
     @ParameterizedTest
     @CsvSource({
-            "29, 0, 30",
-            "14, 15, 30"
+            "29, 0, 0, 0, 30",
+            "14, 15, 0, 0, 30"
     })
-    public void shouldReduceStationAmount30(int expected, int set, int amount) {
-        Radio radio = new Radio(amount);
+    public void shouldReduceStationAmount30(int expected, int set, int currentVolume, int currentStation, int amount) {
+        Radio radio = new Radio(currentVolume, currentStation, amount);
 
         radio.setCurrentStation(set);
         radio.reduceStation();
@@ -136,11 +136,11 @@ public class RadioTest {
 
     @ParameterizedTest
     @CsvSource({
-            "0, 30, 30",
-            "0, -1, 30",
+            "0, 30, 0, 0, 30",
+            "0, -1, 0, 0, 30",
     })
-    public void setStationBorderTestAmount30(int expected, int set, int amount) {
-        Radio radio = new Radio(amount);
+    public void setStationBorderTestAmount30(int expected, int set, int currentVolume, int currentStation, int amount) {
+        Radio radio = new Radio(currentVolume, currentStation, amount);
 
         radio.setCurrentStation(set);
 
